@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'org.jetbrains.dokka'
+}
+
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId versions.applicationId
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation library.androidxCore
+    implementation library.composeUI
+    implementation library.composeMaterial
+    implementation library.composeUiTooling
+    implementation library.lifecycleRuntime
+    implementation library.composeActivity
+    implementation library.daggerAndroid
+    implementation library.daggerAndroidSupport
+    implementation library.room
+    implementation library.roomKtx
+    implementation library.navigation
+    kapt library.roomAnotationProcessor
+    kapt library.daggerAndroidProcessorKapt
+    kapt library.daggerCompilerKapt
+    testImplementation library.juintTest
+    androidTestImplementation library.junitAndroidTest
+    androidTestImplementation library.espressoAndroidTest
+    androidTestImplementation library.uiAndroidTest
+    debugImplementation library.uiDebug
+}

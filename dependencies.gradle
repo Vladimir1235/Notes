@@ -1,0 +1,43 @@
+ext {
+    versions = [
+            composeVersion   : "1.2.0-beta02",
+            daggerVersion    : "2.42",
+            applicationId    : "dev.vvasiliev.compose.notes",
+            minSdk           : 21,
+            targetSdk        : 32,
+            versionCode      : 1,
+            versionName      : "1.0",
+            roomVersion      : "2.4.2",
+            dokkaVersion     : "1.4.30",
+            navigationVersion: "2.4.2"
+    ]
+
+    plugin = [
+            app    : '7.1.2',
+            library: '7.1.2',
+            kotlin : '1.6.21'
+    ]
+
+    library = [
+            androidxCore              : 'androidx.core:core-ktx:1.7.0',
+            composeUI                 : "androidx.compose.ui:ui:$versions.composeVersion",
+            composeMaterial           : "androidx.compose.material:material:$versions.composeVersion",
+            composeUiTooling          : "androidx.compose.ui:ui-tooling-preview:$versions.composeVersion",
+            lifecycleRuntime          : 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1',
+            composeActivity           : 'androidx.activity:activity-compose:1.3.1',
+            juintTest                 : 'junit:junit:4.13.2',
+            junitAndroidTest          : 'androidx.test.ext:junit:1.1.3',
+            espressoAndroidTest       : 'androidx.test.espresso:espresso-core:3.4.0',
+            uiAndroidTest             : "androidx.compose.ui:ui-test-junit4:$versions.composeVersion",
+            uiDebug                   : "androidx.compose.ui:ui-tooling:$versions.composeVersion",
+            daggerAndroid             : "com.google.dagger:dagger-android:$versions.daggerVersion",
+            daggerAndroidSupport      : "com.google.dagger:dagger-android-support:$versions.daggerVersion", // if you use the support libraries
+            daggerAndroidProcessorKapt: "com.google.dagger:dagger-android-processor:$versions.daggerVersion",
+            daggerCompilerKapt        : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
+            room                      : "androidx.room:room-runtime:$versions.roomVersion",
+            roomAnotationProcessor    : "androidx.room:room-compiler:$versions.roomVersion",
+            roomKtx                   : "androidx.room:room-ktx:$versions.roomVersion",
+            dokka                     : "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaVersion",
+            navigation                : "androidx.navigation:navigation-compose:$versions.navigationVersion"
+    ]
+}
