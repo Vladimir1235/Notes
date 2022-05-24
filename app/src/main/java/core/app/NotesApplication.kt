@@ -1,29 +1,22 @@
 package core.app
 
-import android.app.Application
 import core.di.CoreComponent
 import core.di.DaggerCoreComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
-import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import javax.inject.Inject
 
-class NotesApplication: Application(), HasAndroidInjector {
+class NotesApplication : DaggerApplication(), HasAndroidInjector {
 
-    @Inject
-    lateinit var injector: DispatchingAndroidInjector<Any>
+    var coreComponent: CoreComponent = DaggerCoreComponent.builder().bindApplication(this).build()
 
-    lateinit var coreComponent: CoreComponent
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         initDagger()
+       return coreComponent
     }
 
-    private fun initDagger() {
-        coreComponent = DaggerCoreComponent.builder().bindApplication(this).build()
+    private fun initDagger(){
+        coreComponent.inject(this)
     }
-
-    override fun androidInjector(): AndroidInjector<Any> = injector
 }

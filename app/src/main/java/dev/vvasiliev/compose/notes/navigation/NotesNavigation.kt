@@ -11,7 +11,7 @@ sealed class NavigationDestination(protected val destination: DestinationType) {
      * Screen with notes list destination
      */
     object NotesScreen: NavigationDestination(destination = DestinationType.NOTE_LIST_SCREEN) {
-        override fun getRoot(): String = destination.getRoot()
+        override fun getRoute(): String = destination.getRoot()
 
         override val fullScheme: String = destination.getRoot()
     }
@@ -19,16 +19,16 @@ sealed class NavigationDestination(protected val destination: DestinationType) {
     /**
      * Screen with note details destination
      */
-    class NoteScreen(private val id: Long): NavigationDestination(destination = DestinationType.NOTE_SCREEN){
+    class NoteScreen(private val id: Long = 0): NavigationDestination(destination = DestinationType.NOTE_SCREEN){
 
         /**
          * Route field 'id'
          */
-        private val _id_field = "id"
+        private val id_field = "id"
 
-        override fun getRoot(): String = "${ this.destination.getRoot() }/{$id}"
+        override fun getRoute(): String = "${ this.destination.getRoot() }/{$id}"
 
-        override val fullScheme: String = "${ this.destination.getRoot() }/{$_id_field}"
+        override val fullScheme: String = "${ this.destination.getRoot() }/{$id_field}"
     }
 
     /**
@@ -38,11 +38,11 @@ sealed class NavigationDestination(protected val destination: DestinationType) {
 
         override val fullScheme: String = destination.getRoot()
 
-        override fun getRoot(): String = destination.getRoot()
+        override fun getRoute(): String = destination.getRoot()
 
     }
 
-    abstract fun getRoot(): String
+    abstract fun getRoute(): String
     abstract val fullScheme: String
 }
 

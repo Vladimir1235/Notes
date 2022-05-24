@@ -3,13 +3,13 @@ package core.di.scope
 import javax.inject.Scope
 
 @Scope
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 annotation class AppScope
 
 @Scope
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 annotation class ActivityScope
 
 @Scope
-@Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.BINARY)
 annotation class ViewModelScope

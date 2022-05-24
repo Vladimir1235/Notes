@@ -1,16 +1,14 @@
 package dev.vvasiliev.compose.notes.screen.note.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import core.viewmodel.BaseViewModel
+import dev.vvasiliev.compose.notes.navigation.GlobalNavigator
+import dev.vvasiliev.compose.notes.screen.note.event.NoteScreenEvent
 import dev.vvasiliev.compose.notes.usecase.LoadNotes
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NoteViewModel @Inject constructor(private val load: LoadNotes): ViewModel() {
-
-    fun loadNotes(id: Long) = viewModelScope.launch { load.getSpecific(id = id) }
-
-    fun onEvent(){
-
-    }
+class NoteViewModel @Inject constructor(
+    globalNavigator: GlobalNavigator,
+    private val load: LoadNotes
+) : BaseViewModel<NoteScreenEvent>(globalNavigator) {
+    override fun onEvent(event: NoteScreenEvent) {}
 }
